@@ -1,4 +1,12 @@
-User name is John Doe.
-User is an AI Engineer.
-User is interested in AI Agents.
-User is based in San Francisco, California.
+User is a busy CEO who provides AI strategy and transformation consulting to mid-level organizations.
+User's objective is to help mid-level organizations catch up or accelerate AI adoption.
+User is interested in strategically important AI news that would be must-know information for mid-level organization leaders.
+User focuses on AI transformation, strategy, and implementation insights.
+User needs to stay current with developments from major AI companies like Nvidia, OpenAI, and Anthropic.
+
+Preferred news sources to monitor:
+- https://www.artificialintelligence-news.com/
+- https://therundown.ai
+- https://nvidianews.nvidia.com/
+- https://openai.com/news/
+- https://www.anthropic.com/news
