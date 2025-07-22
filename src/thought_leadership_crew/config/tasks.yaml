@@ -1,38 +1,130 @@
 ---
-scrape_news_articles:
-  description: 'Use the ScrapeWebsiteTool to gather articles from the specified sources array:
-    {trusted_sources}. Focus on collecting the latest news in the AI space that would impact
-    mid-level organizations considering AI adoption and transformation.'
-  expected_output: A collection of news articles from the specified sources.
+gather_news_from_trusted_sources:
+  description: 'Scrape all recent AI news headlines, URLs, and content from the provided
+    trusted sources: {trusted_sources}. Create a comprehensive list of news items
+    with their publication dates, headlines, brief descriptions, and full URLs. Focus
+    on gathering a diverse range of news items that might be relevant to {user_role}
+    with the objective of {user_objective}.'
+  expected_output: A comprehensive list of recent AI news items from all trusted sources,
+    including headlines, publication dates, brief descriptions, and full URLs. The
+    list should be well-organized and include all potentially relevant news without
+    any initial filtering for importance.
   async_execution: false
-  agent: news_scraper
-analyze_strategic_importance:
-  description: Evaluate each article for its strategic relevance to mid-level organizations.
-    Consider implementation feasibility, ROI potential, competitive advantages, and how
-    each story impacts AI adoption strategies. Prioritize news that provides actionable insights.
-  expected_output: A prioritized list of articles with strategic importance scores and
-    brief rationale for each, focusing on relevance to mid-level organization AI transformation.
+  agent: news_collector
+supplement_with_additional_context:
+  description: For each news item collected, perform targeted searches to gather additional
+    context, background information, or related developments that might enhance understanding
+    of the strategic importance. This may include information about the companies
+    involved, previous related announcements, expert opinions, or market reactions.
+    Focus on information that would help {user_role} better understand the significance
+    of each news item in relation to {user_objective}.
+  expected_output: Enhanced news items with additional context, background information,
+    and related developments for each story. This should include any supplementary
+    information that helps establish why each news item might be strategically important
+    to mid-level organization leaders interested in AI adoption.
   async_execution: false
-  agent: strategic_analyzer
+  agent: news_collector
   context:
-  - scrape_news_articles
-create_news_digest:
-  description: Compile a digest of headlines, summaries, and strategic takeaways for
-    mid-level organization leaders. Include URLs, original sources, and emphasize why
-    each story matters for AI adoption, what actions to consider, and potential impacts.
-  expected_output: A comprehensive digest featuring headlines, executive summaries,
-    strategic takeaways, implementation considerations, and action items for each story.
+  - gather_news_from_trusted_sources
+evaluate_strategic_importance:
+  description: 'Analyze each news item against the user''s role ({user_role}) and
+    objectives ({user_objective}) to determine its strategic significance for mid-level
+    organization leaders looking to catch up or accelerate AI adoption. Consider factors
+    such as: potential business impact, implementation feasibility, competitive advantage,
+    cost implications, regulatory considerations, and alignment with current business
+    trends. Rank each news item on a scale of 1-10 for strategic importance.'
+  expected_output: A strategic analysis of each news item with clear reasoning for
+    its importance rating. The analysis should explain why certain news items are
+    more strategically significant than others specifically for mid-level organization
+    leaders with the objective of {user_objective}. Include a ranked list of all news
+    items from most to least strategically important.
   async_execution: false
-  agent: digest_creator
+  agent: strategic_analyst
   context:
-  - analyze_strategic_importance
-draft_social_media_posts:
-  description: Create punchy, thought-provoking social media posts for the top 3 stories
-    that position the author as a trusted AI strategy advisor. Include insights that
-    mid-level leaders would find valuable and actionable.
-  expected_output: Three compelling social media posts with hooks, insights, and
-    calls-to-action that demonstrate thought leadership in AI transformation.
+  - gather_news_from_trusted_sources
+  - supplement_with_additional_context
+select_most_important_stories:
+  description: Based on the strategic analysis, identify the most important AI news
+    stories that would be considered must-know information for mid-level organization
+    leaders with the objective of {user_objective}. Select a reasonable number of
+    stories (approximately 5-10) that represent the most strategically significant
+    developments. Ensure diversity in the selection to cover different aspects of
+    AI that might be relevant to {user_role}.
+  expected_output: A curated list of the 5-10 most strategically important AI news
+    stories, with a brief explanation of why each was selected. The selection should
+    represent diverse aspects of AI development relevant to mid-level organization
+    leaders and should be clearly aligned with the user's role as {user_role} and
+    objective of {user_objective}.
   async_execution: false
-  agent: social_media_content_creator
+  agent: strategic_analyst
   context:
-  - create_news_digest
+  - evaluate_strategic_importance
+create_comprehensive_summaries:
+  description: 'For each selected important story, create a concise yet comprehensive
+    summary that captures the key information and implications. Each summary should
+    be approximately 150-250 words and should include: the core announcement or development,
+    key stakeholders involved, technological aspects explained in business terms,
+    and potential industry impact. Include original source URLs and any additional
+    source URLs discovered during research.'
+  expected_output: Well-crafted summaries for each of the most important AI news stories.
+    Each summary should be informative, concise, and accessible to business leaders
+    without deep technical expertise. Summaries should include all relevant URLs and
+    present the information in a way that would be valuable to someone in the {user_role}
+    position.
+  async_execution: false
+  agent: content_curator
+  context:
+  - select_most_important_stories
+identify_strategic_takeaways:
+  description: For each summarized story, articulate 2-3 specific strategic takeaways
+    that explain why this information is important to mid-level organization leaders
+    looking to adopt or accelerate AI implementation. Focus on actionable insights,
+    potential opportunities, competitive considerations, or risk factors that would
+    be relevant to {user_role} with the objective of {user_objective}.
+  expected_output: Clear strategic takeaways for each important news story that explain
+    its significance specifically for mid-level organization leaders. These takeaways
+    should be practical, forward-looking, and directly relevant to business strategy
+    rather than just technological interest. They should reflect the perspective of
+    someone in the {user_role} position advising organizations on AI strategy.
+  async_execution: false
+  agent: content_curator
+  context:
+  - create_comprehensive_summaries
+generate_social_media_content:
+  description: For the top 3 most important stories (as ranked in the strategic analysis),
+    create punchy, engaging social media posts that would appeal to the target audience
+    interested in AI strategy and transformation. Each post should be appropriate
+    for professional platforms, be attention-grabbing, include a strategic insight,
+    and prompt engagement. Consider the perspective and voice of {user_role} when
+    crafting these posts.
+  expected_output: Three compelling social media posts (one for each top story) that
+    effectively communicate the strategic importance of the news in an engaging way.
+    Each post should be in the voice of someone in the {user_role} position, include
+    a hook to capture attention, convey a key strategic insight, and encourage engagement
+    through a question or call to action. Posts should be appropriately formatted
+    and of suitable length for professional social media platforms.
+  async_execution: false
+  agent: social_media_specialist
+  context:
+  - select_most_important_stories
+  - identify_strategic_takeaways
+compile_final_digest:
+  description: Assemble all components into a well-structured digest that presents
+    the headlines, summaries, strategic takeaways, and social media content in an
+    easily consumable format. The digest should be organized in order of strategic
+    importance, with the most critical news items first. Include a brief executive
+    summary at the beginning that highlights the 2-3 most significant developments
+    and their implications for {user_role} with the objective of {user_objective}.
+  expected_output: 'A complete, professionally formatted digest of strategic AI news
+    that includes: 1) An executive summary of the most significant developments, 2)
+    The curated list of important news stories in order of strategic importance, 3)
+    Comprehensive summaries with source URLs for each story, 4) Strategic takeaways
+    for each story, and 5) Draft social media posts for the top 3 stories. The digest
+    should be well-organized, visually clear, and designed for easy consumption by
+    busy executives in the position of {user_role}.'
+  async_execution: false
+  agent: content_curator
+  context:
+  - create_comprehensive_summaries
+  - identify_strategic_takeaways
+  - generate_social_media_content

@@ -8,59 +8,87 @@ class ThoughtLeadershipCrew():
     """Thought Leadership crew"""
 
     @agent
-    def news_scraper(self) -> Agent:
+    def news_collector(self) -> Agent:
         return Agent(
-            config=self.agents_config['news_scraper'],
+            config=self.agents_config['news_collector'],
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
         )
 
     @agent
-    def strategic_analyzer(self) -> Agent:
+    def strategic_analyst(self) -> Agent:
         return Agent(
-            config=self.agents_config['strategic_analyzer'],
+            config=self.agents_config['strategic_analyst'],
             tools=[SerperDevTool()],
         )
 
     @agent
-    def digest_creator(self) -> Agent:
+    def content_curator(self) -> Agent:
         return Agent(
-            config=self.agents_config['digest_creator'],
+            config=self.agents_config['content_curator'],
             tools=[SerperDevTool()],
         )
 
     @agent
-    def social_media_content_creator(self) -> Agent:
+    def social_media_specialist(self) -> Agent:
         return Agent(
-            config=self.agents_config['social_media_content_creator'],
+            config=self.agents_config['social_media_specialist'],
             tools=[SerperDevTool()],
         )
 
 
     @task
-    def scrape_news_articles(self) -> Task:
+    def gather_news_from_trusted_sources(self) -> Task:
         return Task(
-            config=self.tasks_config['scrape_news_articles'],
-            tools=[ScrapeWebsiteTool(), SerperDevTool()],
+            config=self.tasks_config['gather_news_from_trusted_sources'],
+            tools=[ScrapeWebsiteTool()],
         )
 
     @task
-    def analyze_strategic_importance(self) -> Task:
+    def supplement_with_additional_context(self) -> Task:
         return Task(
-            config=self.tasks_config['analyze_strategic_importance'],
+            config=self.tasks_config['supplement_with_additional_context'],
             tools=[SerperDevTool()],
         )
 
     @task
-    def create_news_digest(self) -> Task:
+    def evaluate_strategic_importance(self) -> Task:
         return Task(
-            config=self.tasks_config['create_news_digest'],
+            config=self.tasks_config['evaluate_strategic_importance'],
             tools=[SerperDevTool()],
         )
 
     @task
-    def draft_social_media_posts(self) -> Task:
+    def select_most_important_stories(self) -> Task:
         return Task(
-            config=self.tasks_config['draft_social_media_posts'],
+            config=self.tasks_config['select_most_important_stories'],
+            tools=[SerperDevTool()],
+        )
+
+    @task
+    def create_comprehensive_summaries(self) -> Task:
+        return Task(
+            config=self.tasks_config['create_comprehensive_summaries'],
+            tools=[SerperDevTool()],
+        )
+
+    @task
+    def identify_strategic_takeaways(self) -> Task:
+        return Task(
+            config=self.tasks_config['identify_strategic_takeaways'],
+            tools=[SerperDevTool()],
+        )
+
+    @task
+    def generate_social_media_content(self) -> Task:
+        return Task(
+            config=self.tasks_config['generate_social_media_content'],
+            tools=[SerperDevTool()],
+        )
+
+    @task
+    def compile_final_digest(self) -> Task:
+        return Task(
+            config=self.tasks_config['compile_final_digest'],
             tools=[SerperDevTool()],
         )
 

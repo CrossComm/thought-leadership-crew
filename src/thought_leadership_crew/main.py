@@ -14,13 +14,18 @@ trusted_sources = [
     "https://openai.com/news", 
     "https://www.anthropic.com/news" ]
 
+user_role = "Busy CEO who provides AI strategy and transformation consulting to mid-level organizations looking to catch up or accelerate AI Adoption."
+user_objective = "Find the most strategically important news in the AI space that would be considered must-know information for mid-level organization leaders."
+
 
 def run():
     """
     Run the crew.
     """
     inputs = {
-        'trusted_sources': trusted_sources
+        'trusted_sources': trusted_sources,
+        'user_role': user_role,
+        'user_objective': user_objective
     }
     ThoughtLeadershipCrew().crew().kickoff(inputs=inputs)
 
@@ -30,7 +35,9 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        'trusted_sources': trusted_sources
+        'trusted_sources': trusted_sources,
+        'user_role': user_role,
+        'user_objective': user_objective
     }
     try:
         ThoughtLeadershipCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
@@ -53,7 +60,9 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        'trusted_sources': trusted_sources
+        'trusted_sources': trusted_sources,
+        'user_role': user_role,
+        'user_objective': user_objective
     }
     try:
         ThoughtLeadershipCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
