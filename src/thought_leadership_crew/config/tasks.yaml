@@ -1,7 +1,7 @@
 ---
 scrape_news_articles:
-  description: 'Use the ScrapeWebsiteTool to gather articles from the specified sources:
-    {sources}. Focus on collecting the latest news in the AI space.'
+  description: 'Use the ScrapeWebsiteTool to gather articles from the specified sources array:
+    {trusted_sources}. Focus on collecting the latest news in the AI space.'
   expected_output: A collection of news articles from the specified sources.
   async_execution: false
   agent: news_scraper

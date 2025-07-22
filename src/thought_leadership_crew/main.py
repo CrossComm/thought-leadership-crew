@@ -7,18 +7,20 @@ from thought_leadership_crew.crew import ThoughtLeadershipCrew
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
+trusted_sources = [ 
+    "https://www.artificialintelligence-news.com", 
+    "https://therundown.ai", 
+    "https://nvidianews.nvidia.com",
+    "https://openai.com/news", 
+    "https://www.anthropic.com/news" ]
+
+
 def run():
     """
     Run the crew.
     """
     inputs = {
-        'sources': [
-            'https://www.artificialintelligence-news.com/',
-            'therundown.ai',
-            'https://nvidianews.nvidia.com/',
-            'https://openai.com/news/',
-            'https://www.anthropic.com/news'
-        ]
+        'trusted_sources': trusted_sources
     }
     ThoughtLeadershipCrew().crew().kickoff(inputs=inputs)
 
@@ -28,13 +30,7 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        'sources': [
-            'https://www.artificialintelligence-news.com/',
-            'therundown.ai',
-            'https://nvidianews.nvidia.com/',
-            'https://openai.com/news/',
-            'https://www.anthropic.com/news'
-        ]
+        'trusted_sources': trusted_sources
     }
     try:
         ThoughtLeadershipCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
@@ -57,13 +53,7 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        'sources': [
-            'https://www.artificialintelligence-news.com/',
-            'therundown.ai',
-            'https://nvidianews.nvidia.com/',
-            'https://openai.com/news/',
-            'https://www.anthropic.com/news'
-        ]
+        'trusted_sources': trusted_sources
     }
     try:
         ThoughtLeadershipCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
