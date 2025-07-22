@@ -1,17 +1,33 @@
-research_task:
-  description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
-  expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
-
-reporting_task:
-  description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
-  expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+---
+scrape_news_articles:
+  description: 'Use the ScrapeWebsiteTool to gather articles from the specified sources:
+    {sources}. Focus on collecting the latest news in the AI space.'
+  expected_output: A collection of news articles from the specified sources.
+  async_execution: false
+  agent: news_scraper
+analyze_strategic_importance:
+  description: Evaluate each article against the user's role and objectives to determine
+    strategic relevance. Consider how each story impacts AI strategy and transformation
+    consulting.
+  expected_output: A list of articles with their assessed strategic importance.
+  async_execution: false
+  agent: strategic_analyzer
+  context:
+  - scrape_news_articles
+create_news_digest:
+  description: Compile a digest of headlines, summaries, and strategic takeaways,
+    including URLs and original sources for the most important news stories.
+  expected_output: A digest of strategically important AI news headlines with summaries
+    and takeaways.
+  async_execution: false
+  agent: digest_creator
+  context:
+  - analyze_strategic_importance
+draft_social_media_posts:
+  description: Create engaging social media posts for the top 3 important news stories,
+    tailored to the audience of a busy CEO in AI strategy.
+  expected_output: Draft social media posts for the top 3 news stories.
+  async_execution: false
+  agent: social_media_content_creator
+  context:
+  - create_news_digest
