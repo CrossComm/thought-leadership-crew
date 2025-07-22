@@ -12,7 +12,13 @@ def run():
     Run the crew.
     """
     inputs = {
-        'sources': 'sample_value'
+        'sources': [
+            'https://www.artificialintelligence-news.com/',
+            'therundown.ai',
+            'https://nvidianews.nvidia.com/',
+            'https://openai.com/news/',
+            'https://www.anthropic.com/news'
+        ]
     }
     ThoughtLeadershipCrew().crew().kickoff(inputs=inputs)
 
@@ -22,7 +28,13 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        'sources': 'sample_value'
+        'sources': [
+            'https://www.artificialintelligence-news.com/',
+            'therundown.ai',
+            'https://nvidianews.nvidia.com/',
+            'https://openai.com/news/',
+            'https://www.anthropic.com/news'
+        ]
     }
     try:
         ThoughtLeadershipCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
@@ -45,7 +57,13 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        'sources': 'sample_value'
+        'sources': [
+            'https://www.artificialintelligence-news.com/',
+            'therundown.ai',
+            'https://nvidianews.nvidia.com/',
+            'https://openai.com/news/',
+            'https://www.anthropic.com/news'
+        ]
     }
     try:
         ThoughtLeadershipCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
