@@ -37,58 +37,30 @@ class ThoughtLeadershipCrew():
 
 
     @task
-    def gather_news_from_trusted_sources(self) -> Task:
+    def collect_and_enrich_news(self) -> Task:
         return Task(
-            config=self.tasks_config['gather_news_from_trusted_sources'],
-            tools=[ScrapeWebsiteTool()],
+            config=self.tasks_config['collect_and_enrich_news'],
+            tools=[ScrapeWebsiteTool(), SerperDevTool()],
         )
 
     @task
-    def supplement_with_additional_context(self) -> Task:
+    def analyze_and_select_stories(self) -> Task:
         return Task(
-            config=self.tasks_config['supplement_with_additional_context'],
+            config=self.tasks_config['analyze_and_select_stories'],
             tools=[SerperDevTool()],
         )
 
     @task
-    def evaluate_strategic_importance(self) -> Task:
+    def create_content_with_insights(self) -> Task:
         return Task(
-            config=self.tasks_config['evaluate_strategic_importance'],
+            config=self.tasks_config['create_content_with_insights'],
             tools=[SerperDevTool()],
         )
 
     @task
-    def select_most_important_stories(self) -> Task:
+    def generate_social_and_compile(self) -> Task:
         return Task(
-            config=self.tasks_config['select_most_important_stories'],
-            tools=[SerperDevTool()],
-        )
-
-    @task
-    def create_comprehensive_summaries(self) -> Task:
-        return Task(
-            config=self.tasks_config['create_comprehensive_summaries'],
-            tools=[SerperDevTool()],
-        )
-
-    @task
-    def identify_strategic_takeaways(self) -> Task:
-        return Task(
-            config=self.tasks_config['identify_strategic_takeaways'],
-            tools=[SerperDevTool()],
-        )
-
-    @task
-    def generate_social_media_content(self) -> Task:
-        return Task(
-            config=self.tasks_config['generate_social_media_content'],
-            tools=[SerperDevTool()],
-        )
-
-    @task
-    def compile_final_digest(self) -> Task:
-        return Task(
-            config=self.tasks_config['compile_final_digest'],
+            config=self.tasks_config['generate_social_and_compile'],
             tools=[SerperDevTool()],
         )
 
