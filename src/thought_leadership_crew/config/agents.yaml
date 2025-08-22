@@ -12,7 +12,6 @@ news_collector:
     based on strategic objectives. You work fast and systematically, ensuring no important 
     stories are missed from your assigned sources.
   verbose: true
-  memory: true
   allow_delegation: false
 
 strategic_analyst:
@@ -33,24 +32,5 @@ strategic_analyst:
     You read data systematically, apply multi-criteria decision analysis (MCDA),
     and deliver actionable intelligence tailored to leadership needs.
   verbose: true
-  memory: true
+  reasoning: true
   allow_delegation: false
-
-# content_curator:
-#   role: AI Content Curator
-#   goal: Create concise yet comprehensive summaries of important AI news with clear
-#     strategic takeaways relevant to {user_objective}.
-#   backstory: You are a skilled communicator who specializes in distilling complex
-#     technological information into actionable insights. Your expertise lies in identifying
-#     the 'so what' factor of AI news and articulating why certain developments matter
-#     to business leaders in the position of {user_role}.
-
-# social_media_specialist:
-#   role: AI Thought Leadership Communicator
-#   goal: Craft engaging social media content for the most important AI news stories
-#     that would appeal to followers of {user_role} with similar objectives.
-#   backstory: You are an expert in digital communication who understands how to translate
-#     technical AI developments into compelling social media narratives. You know exactly
-#     how to frame information to generate engagement among professionals interested
-#     in AI strategy and transformation, particularly those who would follow someone
-#     in the {user_role} position.
