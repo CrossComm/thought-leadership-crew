@@ -1,40 +1,67 @@
 ---
 collect_and_enrich_news:
-  description: 'Scrape all recent AI news headlines, URLs, and content from the provided
-    trusted sources: {trusted_sources}. For each news item collected, perform targeted 
-    searches to gather additional context, background information, or related developments 
-    that might enhance understanding of the strategic importance. This may include 
-    information about the companies involved, previous related announcements, expert 
-    opinions, or market reactions. Focus on gathering a diverse range of news items 
-    that might be relevant to {user_role} with the objective of {user_objective}.'
-  expected_output: A json file which is a comprehensive list of recent AI news items from all trusted sources
-    with enhanced context. Each item should include headlines, publication dates, brief 
-    descriptions, full URLs, and additional background information or related developments. 
-    The list should be well-organized and include all potentially relevant news that 
-    would help {user_role} understand the significance of each news item in relation 
-    to {user_objective}.
+  description: >
+    Execute comprehensive collection of the most recent AI articles from all trusted sources:
+    
+    COLLECTION PROCESS:
+    1. Systematically search each source in {trusted_sources} for articles published in the last 24-48 hours
+    2. For each article found, extract these exact data points:
+       - Headline (exact text as published)
+       - Publication date (convert to ISO format: YYYY-MM-DDTHH:MM:SSZ)
+       - Brief description (2-3 sentence summary of the article's main point)
+       - Full URL (direct link to the original article)
+       - Background information (more background information about the article (if available))
+       - Related developments (related developments to the article (if available))
+    3. Apply initial relevance filter: prioritize articles about AI breakthroughs, product launches, 
+       funding announcements, research publications, regulatory changes, and industry partnerships
+    4. Focus on content that could impact or interest someone in the {user_role} position 
+       working toward {user_objective}
+    
+    QUALITY REQUIREMENTS:
+    - Verify all URLs are accessible and point to original content
+    - Ensure publication dates are accurate and recent (last 24-48 hours)
+    - Write clear, factual brief descriptions without speculation
+    - Collect minimum 10 articles, maximum 50 articles for manageable processing
+    - Prioritize articles from authoritative AI/tech publications over blog posts
+    
+    SCOPE: This task focuses ONLY on collection - do not perform deep analysis, 
+    strategic assessment, or extensive background research. Keep descriptions factual and concise.
+  
+  expected_output: >
+    A structured collection of recent AI articles using your existing NewsItems model.
+    Each NewsItem must include:
+    - headline: Exact article headline as published
+    - publication_date: ISO format (YYYY-MM-DDTHH:MM:SSZ)  
+    - brief_description: Factual 2-3 sentence summary of the article's main points
+    - full_url: Direct URL to the original article
+    - background_info: Factual 2-3 sentence background information about the article (if available)
+    - related_developments: Factual 2-3 sentence related developments to the article (if available)
+    
+    Set total_count to the actual number of articles collected.
+    Focus on collecting high-quality, recent articles that could be relevant to {user_role} 
+    working toward {user_objective}, but do not perform deep analysis at this stage.
   async_execution: true
   output_file: news_collector_output.json
   agent: news_collector
 
-analyze_and_select_stories:
-  description: 'Analyze each enriched news item against the user''s role ({user_role}) 
-    and objectives ({user_objective}) to determine its strategic significance for 
-    mid-level organization leaders looking to catch up or accelerate AI adoption. 
-    Consider factors such as: potential business impact, implementation feasibility, 
-    competitive advantage, cost implications, regulatory considerations, and alignment 
-    with current business trends. Rank each news item on a scale of 1-10 for strategic 
-    importance and select the top 5-10 stories that represent the most strategically 
-    significant developments. Ensure diversity in the selection to cover different 
-    aspects of AI that might be relevant to {user_role}.'
-  expected_output: A ranked list of the 5-10 most strategically important AI news 
-    stories with clear reasoning for each importance rating and selection. The analysis 
-    should explain why certain news items are more strategically significant than 
-    others specifically for mid-level organization leaders with the objective of 
-    {user_objective}. The selection should represent diverse aspects of AI development 
-    and be clearly aligned with the user''s role and objectives.
-  async_execution: false
-  agent: strategic_analyst
+# analyze_and_select_stories:
+#   description: 'Analyze each enriched news item against the user''s role ({user_role}) 
+#     and objectives ({user_objective}) to determine its strategic significance for 
+#     mid-level organization leaders looking to catch up or accelerate AI adoption. 
+#     Consider factors such as: potential business impact, implementation feasibility, 
+#     competitive advantage, cost implications, regulatory considerations, and alignment 
+#     with current business trends. Rank each news item on a scale of 1-10 for strategic 
+#     importance and select the top 5-10 stories that represent the most strategically 
+#     significant developments. Ensure diversity in the selection to cover different 
+#     aspects of AI that might be relevant to {user_role}.'
+#   expected_output: A ranked list of the 5-10 most strategically important AI news 
+#     stories with clear reasoning for each importance rating and selection. The analysis 
+#     should explain why certain news items are more strategically significant than 
+#     others specifically for mid-level organization leaders with the objective of 
+#     {user_objective}. The selection should represent diverse aspects of AI development 
+#     and be clearly aligned with the user''s role and objectives.
+#   async_execution: false
+#   agent: strategic_analyst
 
 # create_content_with_insights:
 #   description: 'For each selected important story, create a concise yet comprehensive 

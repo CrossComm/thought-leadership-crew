@@ -56,7 +56,7 @@ class ThoughtLeadershipCrew():
     def collect_and_enrich_news(self) -> Task:
         return Task(
             config=self.tasks_config['collect_and_enrich_news'],
-            tools=[ScrapeWebsiteTool()],
+            tools=[ScrapeWebsiteTool(), SerperDevTool()],
             output_json=NewsItems,
         )
 
