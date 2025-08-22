@@ -1,3 +1,4 @@
 .env
 __pycache__/
 .DS_Store
+news_collector_output.json

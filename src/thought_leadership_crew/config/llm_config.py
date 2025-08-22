@@ -12,15 +12,19 @@ def get_llm():
     
     if use_ollama:
         # Configure Ollama for local usage
-        ollama_model = os.getenv("OLLAMA_MODEL", "llama3:latest")
+        ollama_model = os.getenv("OLLAMA_MODEL", "llama3.1:70b")
         ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         
         return LLM(
             model=f"ollama/{ollama_model}",
-            base_url=ollama_base_url
+            base_url=ollama_base_url,            
+            temperature=0.1
         )
     else:
         # Use default OpenAI/Anthropic configuration
         # CrewAI will use OPENAI_API_KEY from environment automatically
-        model = os.getenv("MODEL", "gpt-4")
-        return LLM(model=model)
+        model = os.getenv("MODEL", "claude-sonnet-4-20250514")
+        return LLM(
+            model=model,
+            temperature=0.1
+        )

@@ -3,6 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import SerperDevTool
 from .config.llm_config import get_llm
+from .output_classes import NewsItems
 
 @CrewBase
 class ThoughtLeadershipCrew():
@@ -12,6 +13,7 @@ class ThoughtLeadershipCrew():
         super().__init__()
         self.llm = get_llm()
 
+#Agents
     @agent
     def news_collector(self) -> Agent:
         return Agent(
@@ -19,63 +21,65 @@ class ThoughtLeadershipCrew():
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
             llm=self.llm,
             verbose=True,
+            allow_delegation=True,
         )
 
-    @agent
-    def strategic_analyst(self) -> Agent:
-        return Agent(
-            config=self.agents_config['strategic_analyst'],
-            tools=[SerperDevTool()],
-            llm=self.llm,
-            verbose=True,
-        )
+    # @agent
+    # def strategic_analyst(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['strategic_analyst'],
+    #         tools=[SerperDevTool()],
+    #         llm=self.llm,
+    #         verbose=True,
+    #     )
 
-    @agent
-    def content_curator(self) -> Agent:
-        return Agent(
-            config=self.agents_config['content_curator'],
-            tools=[SerperDevTool()],
-            llm=self.llm,
-            verbose=True,
-        )
+    # @agent
+    # def content_curator(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['content_curator'],
+    #         tools=[SerperDevTool()],
+    #         llm=self.llm,
+    #         verbose=True,
+    #     )
 
-    @agent
-    def social_media_specialist(self) -> Agent:
-        return Agent(
-            config=self.agents_config['social_media_specialist'],
-            tools=[SerperDevTool()],
-            llm=self.llm,
-            verbose=True,
-        )
+    # @agent
+    # def social_media_specialist(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['social_media_specialist'],
+    #         tools=[SerperDevTool()],
+    #         llm=self.llm,
+    #         verbose=True,
+    #     )
 
-
+#Tasks
     @task
     def collect_and_enrich_news(self) -> Task:
         return Task(
             config=self.tasks_config['collect_and_enrich_news'],
-            tools=[ScrapeWebsiteTool(), SerperDevTool()],
+            tools=[ScrapeWebsiteTool()],
+            output_json=NewsItems,
         )
 
-    @task
-    def analyze_and_select_stories(self) -> Task:
-        return Task(
-            config=self.tasks_config['analyze_and_select_stories'],
-            tools=[SerperDevTool()],
-        )
+    # @task
+    # def analyze_and_select_stories(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['analyze_and_select_stories'],
+    #         tools=[SerperDevTool()],
+    #     )
 
-    @task
-    def create_content_with_insights(self) -> Task:
-        return Task(
-            config=self.tasks_config['create_content_with_insights'],
-            tools=[SerperDevTool()],
-        )
+    # @task
+    # def create_content_with_insights(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['create_content_with_insights'],
+    #         tools=[SerperDevTool()],
+    #     )
 
-    @task
-    def generate_social_and_compile(self) -> Task:
-        return Task(
-            config=self.tasks_config['generate_social_and_compile'],
-            tools=[SerperDevTool()],
-        )
+    # @task
+    # def generate_social_and_compile(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['generate_social_and_compile'],
+    #         tools=[SerperDevTool()],
+    #     )
 
 
     @crew

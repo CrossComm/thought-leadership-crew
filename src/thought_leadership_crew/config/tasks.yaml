@@ -7,13 +7,14 @@ collect_and_enrich_news:
     information about the companies involved, previous related announcements, expert 
     opinions, or market reactions. Focus on gathering a diverse range of news items 
     that might be relevant to {user_role} with the objective of {user_objective}.'
-  expected_output: A comprehensive list of recent AI news items from all trusted sources
+  expected_output: A json file which is a comprehensive list of recent AI news items from all trusted sources
     with enhanced context. Each item should include headlines, publication dates, brief 
     descriptions, full URLs, and additional background information or related developments. 
     The list should be well-organized and include all potentially relevant news that 
     would help {user_role} understand the significance of each news item in relation 
     to {user_objective}.
-  async_execution: false
+  async_execution: true
+  output_file: news_collector_output.json
   agent: news_collector
 
 analyze_and_select_stories:
@@ -34,50 +35,48 @@ analyze_and_select_stories:
     and be clearly aligned with the user''s role and objectives.
   async_execution: false
   agent: strategic_analyst
-  context:
-  - collect_and_enrich_news
 
-create_content_with_insights:
-  description: 'For each selected important story, create a concise yet comprehensive 
-    summary (150-250 words) that captures the key information, implications, and 
-    strategic takeaways. Each summary should include: the core announcement or development, 
-    key stakeholders involved, technological aspects explained in business terms, 
-    potential industry impact, and 2-3 specific strategic takeaways that explain 
-    why this information is important to mid-level organization leaders looking to 
-    adopt or accelerate AI implementation. Focus on actionable insights, potential 
-    opportunities, competitive considerations, or risk factors that would be relevant 
-    to {user_role} with the objective of {user_objective}. Include all relevant 
-    source URLs and present the information in a pre-structured format ready for 
-    the final digest.'
-  expected_output: Well-crafted summaries with embedded strategic takeaways for each 
-    of the most important AI news stories. Each summary should be informative, concise, 
-    accessible to business leaders without deep technical expertise, and include clear 
-    strategic insights. The content should be pre-formatted for easy integration into 
-    the final digest, with all relevant URLs included and presented from the perspective 
-    of someone in the {user_role} position advising organizations on AI strategy.
-  async_execution: false
-  agent: content_curator
-  context:
-  - analyze_and_select_stories
+# create_content_with_insights:
+#   description: 'For each selected important story, create a concise yet comprehensive 
+#     summary (150-250 words) that captures the key information, implications, and 
+#     strategic takeaways. Each summary should include: the core announcement or development, 
+#     key stakeholders involved, technological aspects explained in business terms, 
+#     potential industry impact, and 2-3 specific strategic takeaways that explain 
+#     why this information is important to mid-level organization leaders looking to 
+#     adopt or accelerate AI implementation. Focus on actionable insights, potential 
+#     opportunities, competitive considerations, or risk factors that would be relevant 
+#     to {user_role} with the objective of {user_objective}. Include all relevant 
+#     source URLs and present the information in a pre-structured format ready for 
+#     the final digest.'
+#   expected_output: Well-crafted summaries with embedded strategic takeaways for each 
+#     of the most important AI news stories. Each summary should be informative, concise, 
+#     accessible to business leaders without deep technical expertise, and include clear 
+#     strategic insights. The content should be pre-formatted for easy integration into 
+#     the final digest, with all relevant URLs included and presented from the perspective 
+#     of someone in the {user_role} position advising organizations on AI strategy.
+#   async_execution: false
+#   agent: content_curator
+#   context:
+#   - analyze_and_select_stories
 
-generate_social_and_compile:
-  description: 'Create punchy, engaging social media posts for the top 3 most important 
-    stories that would appeal to the target audience interested in AI strategy and 
-    transformation. Each post should be appropriate for professional platforms, be 
-    attention-grabbing, include a strategic insight, and prompt engagement. Then, 
-    assemble all components into a well-structured final digest that presents the 
-    headlines, summaries, strategic takeaways, and social media content in an easily 
-    consumable format. The digest should be organized in order of strategic importance, 
-    with an executive summary at the beginning that highlights the 2-3 most significant 
-    developments and their implications for {user_role} with the objective of {user_objective}.'
-  expected_output: 'A complete, professionally formatted digest that includes: 1) 
-    Three compelling social media posts for the top stories in the voice of {user_role}, 
-    2) An executive summary of the most significant developments, 3) The curated 
-    list of important news stories in order of strategic importance, 4) Comprehensive 
-    summaries with strategic takeaways and source URLs for each story. The digest 
-    should be well-organized, visually clear, and designed for easy consumption by 
-    busy executives in the position of {user_role}.'
-  async_execution: false
-  agent: social_media_specialist
-  context:
-  - create_content_with_insights
+# generate_social_and_compile:
+#   description: 'Create punchy, engaging social media posts for the top 3 most important 
+#     stories that would appeal to the target audience interested in AI strategy and 
+#     transformation. Each post should be appropriate for professional platforms, be 
+#     attention-grabbing, include a strategic insight, and prompt engagement. Then, 
+#     assemble all components into a well-structured final digest that presents the 
+#     headlines, summaries, strategic takeaways, and social media content in an easily 
+#     consumable format. The digest should be organized in order of strategic importance, 
+#     with an executive summary at the beginning that highlights the 2-3 most significant 
+#     developments and their implications for {user_role} with the objective of {user_objective}.'
+#   expected_output: 'A complete, professionally formatted digest that includes: 1) 
+#     Three compelling social media posts for the top stories in the voice of {user_role}, 
+#     2) An executive summary of the most significant developments, 3) The curated 
+#     list of important news stories in order of strategic importance, 4) Comprehensive 
+#     summaries with strategic takeaways and source URLs for each story. The digest 
+#     should be well-organized, visually clear, and designed for easy consumption by 
+#     busy executives in the position of {user_role}.'
+#   async_execution: false
+#   agent: social_media_specialist
+#   context:
+#   - create_content_with_insights
