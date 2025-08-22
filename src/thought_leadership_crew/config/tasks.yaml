@@ -40,28 +40,78 @@ collect_and_enrich_news:
     Set total_count to the actual number of articles collected.
     Focus on collecting high-quality, recent articles that could be relevant to {user_role} 
     working toward {user_objective}, but do not perform deep analysis at this stage.
-  async_execution: true
+  async_execution: false
   output_file: news_collector_output.json
   agent: news_collector
 
-# analyze_and_select_stories:
-#   description: 'Analyze each enriched news item against the user''s role ({user_role}) 
-#     and objectives ({user_objective}) to determine its strategic significance for 
-#     mid-level organization leaders looking to catch up or accelerate AI adoption. 
-#     Consider factors such as: potential business impact, implementation feasibility, 
-#     competitive advantage, cost implications, regulatory considerations, and alignment 
-#     with current business trends. Rank each news item on a scale of 1-10 for strategic 
-#     importance and select the top 5-10 stories that represent the most strategically 
-#     significant developments. Ensure diversity in the selection to cover different 
-#     aspects of AI that might be relevant to {user_role}.'
-#   expected_output: A ranked list of the 5-10 most strategically important AI news 
-#     stories with clear reasoning for each importance rating and selection. The analysis 
-#     should explain why certain news items are more strategically significant than 
-#     others specifically for mid-level organization leaders with the objective of 
-#     {user_objective}. The selection should represent diverse aspects of AI development 
-#     and be clearly aligned with the user''s role and objectives.
-#   async_execution: false
-#   agent: strategic_analyst
+analyze_and_select_stories:
+  description: >
+    STRATEGIC ANALYSIS AND RANKING PROCESS:
+    
+    PHASE 1 - DATA INGESTION:
+    1. Read the news_collector output from the previous task
+    2. Parse and validate all NewsItem entries
+    3. Confirm successful loading of all articles
+    
+    PHASE 2 - CONTEXTUAL ANALYSIS:
+    Evaluate each article through four strategic lenses:
+    
+    a) RELEVANCE SCORING (1-10):
+       - Direct alignment with {user_role} responsibilities
+       - Connection to {user_objective} goals
+       - Applicability to mid-level organizational context
+    
+    b) IMPACT SCORING (1-10):
+       - Potential business transformation magnitude
+       - Competitive advantage implications
+       - ROI and value creation potential
+       - Industry disruption likelihood
+    
+    c) FEASIBILITY SCORING (1-10):
+       - Implementation complexity for mid-size organizations
+       - Resource requirements (budget, talent, time)
+       - Technology maturity and readiness
+       - Integration with existing systems
+    
+    d) TIMELINESS SCORING (1-10):
+       - Urgency for {user_role} to act
+       - Market timing and first-mover advantages
+       - Risk of falling behind competitors
+    
+    PHASE 3 - STRATEGIC RANKING:
+    1. Calculate composite strategic_score: 
+       (relevance * 0.35) + (impact * 0.30) + (feasibility * 0.20) + (timeliness * 0.15)
+    2. Sort all articles by strategic_score descending
+    3. Select top 5-10 stories ensuring:
+       - Diversity across AI domains (GenAI, ML, Automation, etc.)
+       - Mix of tactical and strategic opportunities
+       - Balance of immediate actions and future planning
+    
+    PHASE 4 - INSIGHT GENERATION:
+    For each selected story, generate:
+    - Clear ranking rationale explaining the scores
+    - 2-3 strategic takeaways specific to {user_role}
+    - Priority classification (high/medium/low)
+    - Recommended actions or next steps
+    
+  expected_output: >
+    A RankedNewsAnalysis JSON object containing:
+    - user_role and user_objective for context
+    - analysis_timestamp (ISO format)
+    - top_stories: Array of 5-10 RankedNewsItem objects, each with:
+      * All original NewsItem fields (headline, publication_date, brief_description, full_url, etc.)
+      * strategic_score (composite 1-10)
+      * Individual scores (relevance_score, impact_score, feasibility_score, timeliness_score)
+      * ranking_rationale (why this ranking)
+      * strategic_takeaways (2-3 actionable insights as a list)
+      * priority level (high/medium/low)
+    - total_analyzed: Count of all articles evaluated
+    - ranking_methodology: Brief description of the ranking approach used
+  async_execution: false
+  output_file: analyze_and_select_stories_output.json
+  agent: strategic_analyst
+  context:
+  - collect_and_enrich_news
 
 # create_content_with_insights:
 #   description: 'For each selected important story, create a concise yet comprehensive 

@@ -2,8 +2,9 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import SerperDevTool
+from crewai_tools import FileReadTool
 from .config.llm_config import get_llm
-from .output_classes import NewsItems
+from .output_classes import NewsItems, RankedNewsItem, RankedNewsAnalysis
 
 @CrewBase
 class ThoughtLeadershipCrew():
@@ -24,14 +25,14 @@ class ThoughtLeadershipCrew():
             allow_delegation=True,
         )
 
-    # @agent
-    # def strategic_analyst(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config['strategic_analyst'],
-    #         tools=[SerperDevTool()],
-    #         llm=self.llm,
-    #         verbose=True,
-    #     )
+    @agent
+    def strategic_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['strategic_analyst'],
+            tools=[SerperDevTool()],
+            llm=self.llm,
+            verbose=True,
+        )
 
     # @agent
     # def content_curator(self) -> Agent:
@@ -60,12 +61,13 @@ class ThoughtLeadershipCrew():
             output_json=NewsItems,
         )
 
-    # @task
-    # def analyze_and_select_stories(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['analyze_and_select_stories'],
-    #         tools=[SerperDevTool()],
-    #     )
+    @task
+    def analyze_and_select_stories(self) -> Task:
+        return Task(
+            config=self.tasks_config['analyze_and_select_stories'],
+            tools=[SerperDevTool()],
+            output_json=RankedNewsAnalysis,
+        )
 
     # @task
     # def create_content_with_insights(self) -> Task:

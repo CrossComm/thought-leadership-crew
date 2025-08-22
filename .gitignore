@@ -2,3 +2,4 @@
 __pycache__/
 .DS_Store
 news_collector_output.json
+analyze_and_select_stories_output.json
