@@ -7,6 +7,7 @@ from thought_leadership_crew.crew import ThoughtLeadershipCrew
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
 
+# Example configuration - customize these based on your thought leadership domain
 trusted_sources = [ 
     "https://www.artificialintelligence-news.com", 
     "https://therundown.ai", 
@@ -14,6 +15,7 @@ trusted_sources = [
     "https://openai.com/news", 
     "https://www.anthropic.com/news" ]
 
+# These parameters define your specific thought leadership focus
 user_role = "Busy CEO who provides AI strategy and transformation consulting to mid-level organizations looking to catch up or accelerate AI Adoption."
 user_objective = "Find the most strategically important news in the AI space that would be considered must-know information for mid-level organization leaders."
 

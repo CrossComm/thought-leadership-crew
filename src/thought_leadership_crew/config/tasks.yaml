@@ -1,7 +1,7 @@
 ---
 collect_and_enrich_news:
   description: >
-    Execute comprehensive collection of the most recent AI articles from all trusted sources:
+    Execute comprehensive collection of the most recent articles from all trusted sources:
     
     COLLECTION PROCESS:
     1. Systematically search each source in {trusted_sources} for articles published in the last 24-48 hours
@@ -12,8 +12,8 @@ collect_and_enrich_news:
        - Full URL (direct link to the original article)
        - Background information (more background information about the article (if available))
        - Related developments (related developments to the article (if available))
-    3. Apply initial relevance filter: prioritize articles about AI breakthroughs, product launches, 
-       funding announcements, research publications, regulatory changes, and industry partnerships
+    3. Apply initial relevance filter: prioritize articles about industry breakthroughs, innovations,
+       product launches, funding announcements, research publications, regulatory changes, and partnerships
     4. Focus on content that could impact or interest someone in the {user_role} position 
        working toward {user_objective}
     
@@ -22,13 +22,13 @@ collect_and_enrich_news:
     - Ensure publication dates are accurate and recent (last 24-48 hours)
     - Write clear, factual brief descriptions without speculation
     - Collect minimum 10 articles, maximum 50 articles for manageable processing
-    - Prioritize articles from authoritative AI/tech publications over blog posts
+    - Prioritize articles from authoritative industry publications over blog posts
     
     SCOPE: This task focuses ONLY on collection - do not perform deep analysis, 
     strategic assessment, or extensive background research. Keep descriptions factual and concise.
   
   expected_output: >
-    A structured collection of recent AI articles using your existing NewsItems model.
+    A structured collection of recent articles using your existing NewsItems model.
     Each NewsItem must include:
     - headline: Exact article headline as published
     - publication_date: ISO format (YYYY-MM-DDTHH:MM:SSZ)  
@@ -59,7 +59,7 @@ analyze_and_select_stories:
     a) RELEVANCE SCORING (1-10):
        - Direct alignment with {user_role} responsibilities
        - Connection to {user_objective} goals
-       - Applicability to mid-level organizational context
+       - Applicability to organizational context
     
     b) IMPACT SCORING (1-10):
        - Potential business transformation magnitude
@@ -83,7 +83,7 @@ analyze_and_select_stories:
        (relevance * 0.35) + (impact * 0.30) + (feasibility * 0.20) + (timeliness * 0.15)
     2. Sort all articles by strategic_score descending
     3. Select top 5-10 stories ensuring:
-       - Diversity across AI domains (GenAI, ML, Automation, etc.)
+       - Diversity across relevant industry domains and topics
        - Mix of tactical and strategic opportunities
        - Balance of immediate actions and future planning
     
