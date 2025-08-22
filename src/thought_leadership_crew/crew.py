@@ -1,17 +1,24 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import SerperDevTool
+from .config.llm_config import get_llm
 
 @CrewBase
 class ThoughtLeadershipCrew():
     """Thought Leadership crew"""
+    
+    def __init__(self):
+        super().__init__()
+        self.llm = get_llm()
 
     @agent
     def news_collector(self) -> Agent:
         return Agent(
             config=self.agents_config['news_collector'],
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
+            llm=self.llm,
+            verbose=True,
         )
 
     @agent
@@ -19,6 +26,8 @@ class ThoughtLeadershipCrew():
         return Agent(
             config=self.agents_config['strategic_analyst'],
             tools=[SerperDevTool()],
+            llm=self.llm,
+            verbose=True,
         )
 
     @agent
@@ -26,6 +35,8 @@ class ThoughtLeadershipCrew():
         return Agent(
             config=self.agents_config['content_curator'],
             tools=[SerperDevTool()],
+            llm=self.llm,
+            verbose=True,
         )
 
     @agent
@@ -33,6 +44,8 @@ class ThoughtLeadershipCrew():
         return Agent(
             config=self.agents_config['social_media_specialist'],
             tools=[SerperDevTool()],
+            llm=self.llm,
+            verbose=True,
         )
 
 
