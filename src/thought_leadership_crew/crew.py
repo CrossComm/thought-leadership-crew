@@ -37,9 +37,19 @@ class ThoughtLeadershipCrew():
     def digest_creator(self) -> Agent:
         return Agent(
             config=self.agents_config['digest_creator'],
+            tools=[SerperDevTool()],
             llm=self.llm,
             reasoning=True,
             max_reasoning_attempts=3,
+            verbose=True,
+        )
+
+    @agent
+    def social_media_strategist(self) -> Agent:
+        return Agent(
+            config=self.agents_config['social_media_strategist'],
+            tools=[SerperDevTool()],
+            llm=self.llm,
             verbose=True,
         )
 
@@ -71,8 +81,20 @@ class ThoughtLeadershipCrew():
             config=self.tasks_config['create_executive_digest'],
             agent=self.digest_creator(),
             context=[self.analyze_and_select_stories()],
+            tools=[SerperDevTool()],
             markdown=True,
             output_file='executive_digest.md',
+        )
+
+    @task
+    def create_social_media_posts(self) -> Task:
+        return Task(
+            config=self.tasks_config['create_social_media_posts'],
+            agent=self.social_media_strategist(),
+            context=[self.analyze_and_select_stories()],
+            tools=[SerperDevTool()],
+            markdown=True,
+            output_file='social_media_posts.md',
             async_execution=True,
         )
 

@@ -118,6 +118,8 @@ create_executive_digest:
       - Validate all ranked items have complete scoring and rationale
       - Confirm strategic takeaways and priority levels are present
       - Extract user_role and user_objective for contextual framing
+      - FACT-CHECK: Use SerperDevTool to verify key statistics, claims, and developments
+      - Cross-reference any dubious information to ensure accuracy
       
       STEP 2: STRATEGIC PATTERN RECOGNITION
       Apply multi-dimensional analysis to identify:
@@ -167,10 +169,11 @@ create_executive_digest:
       - Use strong verbs and avoid passive voice
       
       5.2 STRATEGIC SUMMARY COMPOSITION:
-      - First sentence: WHAT - The core development in plain language
+      - First sentence: WHAT - The core development in plain language (fact-checked)
       - Second sentence: WHY NOW - The timing and urgency factors  
       - Third sentence: IMPACT - Specific implications for {user_role}
       - Use numbers, percentages, or comparisons for concrete context
+      - VERIFY: Use SerperDevTool to confirm accuracy of key facts and figures
       
       5.3 STRATEGIC IMPORTANCE ARTICULATION:
       Answer "Why should {user_role} care?" with:
@@ -286,3 +289,186 @@ create_executive_digest:
       The digest should be formatted in clean, professional Markdown with 
       clear hierarchy, strategic bolding, and scannable structure optimized 
       for executive consumption. Don't add a footer talking about the next update date or time.
+
+create_social_media_posts:
+  description: >
+      SOCIAL MEDIA CONTENT CREATION PROTOCOL - VIRAL THOUGHT LEADERSHIP
+      
+      ═══════════════════════════════════════════════════════════════════
+      PHASE 1: STRATEGIC CONTENT MINING & RESEARCH
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 1: INTELLIGENCE EXTRACTION
+      - Load the complete RankedNewsAnalysis from analyze_and_select_stories task
+      - Identify the TOP 3 most compelling stories based on:
+        * Highest strategic scores
+        * Maximum shareability potential
+        * Strongest emotional hooks
+        * Greatest relevance to {user_role}'s audience
+      - Extract key narratives, statistics, and insights from each story
+      
+      STEP 2: VIRAL MECHANICS RESEARCH
+      Using SerperDevTool, research:
+      - Current trending hashtags in {user_role}'s industry
+      - Recent viral posts on similar topics to understand what resonates
+      - Best practices for engagement in 2025 (hook formulas, optimal length, CTAs)
+      - Platform-specific optimization tactics for LinkedIn and Twitter/X
+      - Emotional triggers that drive shares in professional contexts
+      
+      STEP 3: AUDIENCE PSYCHOGRAPHIC MODELING
+      Based on {user_role} and {user_objective}, define audience characteristics:
+      - Professional challenges they face daily
+      - Aspirations and career goals
+      - Content they typically engage with
+      - Language and tone that resonates
+      - Time of day they're most active
+      
+      ═══════════════════════════════════════════════════════════════════
+      PHASE 2: CONTENT ARCHITECTURE & CREATION
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 4: POST ENGINEERING (Create 3 Distinct Posts)
+      For each of the 3 selected stories, craft a unique social media post:
+      
+      4.1 THE HOOK ENGINEERING
+      Opening Line Requirements:
+      - Maximum 10-15 words that create immediate curiosity
+      - Use pattern interrupts, statistics, or contrarian takes
+      - Employ psychological triggers: FOMO, social proof, transformation promise
+      - Examples of powerful hooks:
+        * "Everyone's talking about [X], but they're missing [Y]..."
+        * "[Shocking statistic] just changed everything about [industry]"
+        * "I was wrong about [common belief]. Here's what I learned..."
+        * "The [Company/Technology] news today isn't what it seems..."
+      
+      4.2 THE NARRATIVE ARC
+      Post Body Structure (3-5 paragraphs):
+      - CONTEXT: Brief setup of the development (1-2 sentences)
+      - INSIGHT: The non-obvious implication others are missing
+      - EVIDENCE: Specific data, examples, or proof points
+      - SO WHAT: Direct relevance to the reader's success
+      - CALL TO ACTION: Question or prompt for engagement
+      
+      4.3 ENGAGEMENT OPTIMIZATION
+      Include these viral elements:
+      - Numbers/Statistics: Concrete data for credibility
+      - Storytelling: Personal angle or case study
+      - Controversy: Respectful challenge to conventional wisdom
+      - Value Delivery: Clear takeaway reader can apply immediately
+      - Visual Breaks: Strategic use of line breaks and emojis (sparingly)
+      
+      4.4 PLATFORM CUSTOMIZATION
+      LinkedIn Version:
+      - Professional tone with personal touches
+      - 1300 character sweet spot (shows "see more" for curiosity)
+      - End with thought-provoking question
+      - Include 3-5 relevant hashtags
+      
+      Twitter/X Version:
+      - Thread format: Hook tweet + 3-5 follow-up tweets
+      - Each tweet stands alone but builds narrative
+      - Use numbers for thread navigation (1/, 2/, etc.)
+      - Include relevant hashtags and mentions
+      
+      STEP 5: FACT-CHECKING & VERIFICATION
+      For each post:
+      - Use SerperDevTool to verify all statistics and claims
+      - Ensure company names, dates, and figures are accurate
+      - Validate that insights are based on factual developments
+      - Cross-reference any controversial statements
+      
+      STEP 6: ENGAGEMENT MECHANICS
+      For each post, add:
+      - Conversation Starter: Open-ended question at the end
+      - Share Trigger: "If you found this valuable, share with someone who..."
+      - Follow Prompt: Subtle invitation to follow for more insights
+      - Hashtag Strategy: 3-5 highly relevant, mix of broad and niche
+      
+      ═══════════════════════════════════════════════════════════════════
+      PHASE 3: OPTIMIZATION & POLISH
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 7: READABILITY ENHANCEMENT
+      - Ensure opening line is under 15 words
+      - Keep sentences under 20 words average
+      - Use active voice throughout
+      - Break up text with line spacing
+      - Bold key phrases for skimmers (LinkedIn)
+      
+      STEP 8: AUTHENTICITY CHECK
+      - Remove all corporate jargon
+      - Ensure voice sounds human, not AI-generated
+      - Add personal pronouns (I, we, you)
+      - Include conversational transitions
+      - Balance professionalism with relatability
+      
+      STEP 9: FINAL QUALITY ASSURANCE
+      Each post must pass these criteria:
+      - Hook Test: Would you stop scrolling for this?
+      - Value Test: Does reader gain something concrete?
+      - Share Test: Would you share this with your network?
+      - Action Test: Is next step clear?
+      - Time Test: Can it be consumed in under 60 seconds?
+      
+      ═══════════════════════════════════════════════════════════════════
+      OUTPUT STRUCTURE & FORMATTING
+      ═══════════════════════════════════════════════════════════════════
+      
+      Deliver 3 complete social media posts, each containing:
+      
+      1. **Post Header**:
+         - Story source/topic
+         - Target platform(s)
+         - Engagement objective
+      
+      2. **The Content**:
+         - Full post text with proper formatting
+         - Emoji placement (if applicable)
+         - Hashtag recommendations
+         - Optimal posting time suggestion
+      
+      3. **Engagement Strategy**:
+         - Expected audience reaction
+         - Potential follow-up content ideas
+         - Response templates for common comments
+      
+      REMEMBER: You're not just sharing news - you're starting conversations,
+      building authority, and creating value that compels professionals to 
+      engage, share, and follow. Every post should position {user_role} as 
+      a thought leader who sees around corners and shares insights that matter.
+      
+  expected_output: >
+      A polished markdown document containing 3 high-impact social media posts, each featuring:
+      
+      1. **Post Identification**:
+         - Source story headline and link
+         - Primary insight being shared
+         - Target audience segment
+      
+      2. **LinkedIn Version**:
+         - Compelling hook (first line)
+         - Full post content (800-1300 characters optimal)
+         - Strategic line breaks and formatting
+         - 3-5 relevant hashtags
+         - Engagement question/CTA
+      
+      3. **Twitter/X Thread Version**:
+         - Hook tweet (maximum impact)
+         - 3-5 follow-up tweets
+         - Thread numbering and flow
+         - Hashtags and potential mentions
+      
+      4. **Engagement Amplifiers**:
+         - Best time to post (based on audience)
+         - Expected engagement metrics
+         - Follow-up content suggestions
+         - Key discussion points to monitor
+      
+      5. **Performance Indicators**:
+         - Why this will resonate
+         - Shareability factors
+         - Authority-building elements
+      
+      The output should be immediately ready to copy-paste into social platforms,
+      with clear formatting, compelling narratives, and strategic elements that 
+      drive engagement while positioning {user_role} as an industry thought leader.
