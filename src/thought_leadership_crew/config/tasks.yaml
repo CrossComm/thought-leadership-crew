@@ -251,7 +251,7 @@ create_executive_digest:
       A polished executive intelligence digest in Markdown format containing:
       
       1. **Header Section**:
-         - Digest title with date
+         - Catchy Digest title
          - User context (role and objective)
          - Time to read estimate
       
@@ -285,4 +285,4 @@ create_executive_digest:
       
       The digest should be formatted in clean, professional Markdown with 
       clear hierarchy, strategic bolding, and scannable structure optimized 
-      for executive consumption.
+      for executive consumption. Don't add a footer talking about the next update date or time.
