@@ -106,7 +106,7 @@ analyze_and_select_stories:
     - ranking_methodology: Brief description of the ranking approach used
 
 create_executive_digest:
-   description: >
+  description: >
       EXECUTIVE DIGEST CREATION PROTOCOL - STRATEGIC INTELLIGENCE SYNTHESIS
       
       ═══════════════════════════════════════════════════════════════════
@@ -247,7 +247,7 @@ create_executive_digest:
       intelligence that enables decisive action. Every word should either inform 
       a decision or inspire an action. If it does neither, cut it.
    
-   expected_output: >
+  expected_output: >
       A polished executive intelligence digest in Markdown format containing:
       
       1. **Header Section**:

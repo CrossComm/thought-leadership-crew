@@ -48,7 +48,7 @@ class ThoughtLeadershipCrew():
     def collect_and_enrich_news(self) -> Task:
         return Task(
             config=self.tasks_config['collect_and_enrich_news'],
-            agents=self.news_collector(),
+            agent=self.news_collector(),
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
             output_pydantic=NewsItems,
             output_file='news_collector_output.json'
@@ -58,8 +58,8 @@ class ThoughtLeadershipCrew():
     def analyze_and_select_stories(self) -> Task:
         return Task(
             config=self.tasks_config['analyze_and_select_stories'],
-            agents=self.strategic_analyst(),
-            context=self.collect_and_enrich_news(),
+            agent=self.strategic_analyst(),
+            context=[self.collect_and_enrich_news()],
             tools=[SerperDevTool()],
             output_pydantic=RankedNewsAnalysis,
             output_file='analyze_and_select_stories_output.json',
@@ -69,8 +69,8 @@ class ThoughtLeadershipCrew():
     def create_executive_digest(self) -> Task:
         return Task(
             config=self.tasks_config['create_executive_digest'],
-            agents=self.digest_creator(),
-            context=self.analyze_and_select_stories(),
+            agent=self.digest_creator(),
+            context=[self.analyze_and_select_stories()],
             markdown=True,
             output_file='executive_digest.md',
             async_execution=True,
