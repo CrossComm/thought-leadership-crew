@@ -40,9 +40,6 @@ collect_and_enrich_news:
     Set total_count to the actual number of articles collected.
     Focus on collecting high-quality, recent articles that could be relevant to {user_role} 
     working toward {user_objective}, but do not perform deep analysis at this stage.
-  async_execution: false
-  output_file: news_collector_output.json
-  agent: news_collector
 
 analyze_and_select_stories:
   description: >
@@ -107,8 +104,185 @@ analyze_and_select_stories:
       * priority level (high/medium/low)
     - total_analyzed: Count of all articles evaluated
     - ranking_methodology: Brief description of the ranking approach used
-  async_execution: false
-  output_file: analyze_and_select_stories_output.json
-  agent: strategic_analyst
-  context:
-  - collect_and_enrich_news
+
+create_executive_digest:
+   description: >
+      EXECUTIVE DIGEST CREATION PROTOCOL - STRATEGIC INTELLIGENCE SYNTHESIS
+      
+      ═══════════════════════════════════════════════════════════════════
+      PREPARATION PHASE - CONTEXT ACQUISITION & ANALYSIS
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 1: DATA INGESTION & VALIDATION
+      - Load the complete RankedNewsAnalysis from the strategic_analyst
+      - Validate all ranked items have complete scoring and rationale
+      - Confirm strategic takeaways and priority levels are present
+      - Extract user_role and user_objective for contextual framing
+      
+      STEP 2: STRATEGIC PATTERN RECOGNITION
+      Apply multi-dimensional analysis to identify:
+      - Convergent Themes: Technologies, markets, or strategies appearing across multiple stories
+      - Divergent Signals: Contrarian indicators or emerging disruptions
+      - Temporal Patterns: Accelerating trends vs. declining relevance
+      - Competitive Dynamics: First-mover opportunities vs. fast-follower advantages
+      - Risk Correlations: Common vulnerabilities or dependencies across stories
+      
+      STEP 3: EXECUTIVE PERSONA MODELING
+      Based on {user_role} and {user_objective}, determine:
+      - Decision Authority Level: What can they directly influence?
+      - Time Horizon: Quarterly pressure vs. long-term strategy
+      - Risk Appetite: Conservative stability vs. aggressive innovation
+      - Resource Constraints: Budget, talent, technology limitations
+      - Political Context: Stakeholder management considerations
+      
+      ═══════════════════════════════════════════════════════════════════
+      SYNTHESIS PHASE - DIGEST ARCHITECTURE & COMPOSITION
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 4: EXECUTIVE SUMMARY CRAFTING (The 30-Second Brief)
+      Create a powerful 3-4 paragraph executive summary that:
+      
+      Paragraph 1 - THE HEADLINE INSIGHT:
+      - Open with the single most important strategic revelation
+      - Use active voice and present tense for immediacy
+      - Include a quantified impact statement if possible
+      
+      Paragraph 2 - THE STRATEGIC LANDSCAPE:
+      - Synthesize 2-3 macro trends shaping the environment
+      - Connect these trends to the user's specific context
+      - Highlight time-sensitive opportunities or threats
+      
+      Paragraph 3 - THE CALL TO ACTION:
+      - State the 2-3 most critical decisions requiring attention
+      - Frame choices in terms of risk vs. opportunity
+      - Suggest a logical sequence for addressing priorities
+      
+      STEP 5: INDIVIDUAL STORY TRANSFORMATION
+      For each of the top 5-10 ranked stories, create a digest entry following this structure:
+      
+      5.1 HEADLINE ENGINEERING:
+      - If original headline is clear and impactful, preserve it
+      - If not, rewrite for clarity using pattern: [Action/Change] + [Impact] + [Relevance]
+      - Limit to 10-15 words maximum
+      - Use strong verbs and avoid passive voice
+      
+      5.2 STRATEGIC SUMMARY COMPOSITION:
+      - First sentence: WHAT - The core development in plain language
+      - Second sentence: WHY NOW - The timing and urgency factors  
+      - Third sentence: IMPACT - Specific implications for {user_role}
+      - Use numbers, percentages, or comparisons for concrete context
+      
+      5.3 STRATEGIC IMPORTANCE ARTICULATION:
+      Answer "Why should {user_role} care?" with:
+      - Business impact in terms of revenue, cost, or competitive position
+      - Strategic alignment or misalignment with {user_objective}
+      - Window of opportunity or threat timeline
+      - Dependencies or prerequisites for action
+      
+      5.4 KEY TAKEAWAYS EXTRACTION:
+      Generate 3 bullet points that are:
+      - ACTION-ORIENTED: Start with verbs (Evaluate, Prepare, Monitor, Invest)
+      - SPECIFIC: Include concrete examples or metrics
+      - PROGRESSIVE: Ordered from immediate to longer-term actions
+      - MEASURABLE: Include success indicators where possible
+      
+      STEP 6: THEMATIC SYNTHESIS
+      Identify 3-5 strategic themes that:
+      - Represent patterns across multiple stories
+      - Have enterprise-wide implications
+      - Suggest systemic changes in the market/industry
+      - Connect to known strategic initiatives or concerns
+      
+      Format themes as:
+      "Theme Name: Brief explanation of the pattern and its strategic significance"
+      
+      STEP 7: STRATEGIC RECOMMENDATIONS FORMULATION
+      Develop 3-5 recommendations that:
+      - Address the collective intelligence, not individual stories
+      - Follow the SMART framework (Specific, Measurable, Achievable, Relevant, Time-bound)
+      - Include both defensive (risk mitigation) and offensive (opportunity capture) moves
+      - Specify the first concrete step for each recommendation
+      - Indicate resource requirements (High/Medium/Low)
+      
+      ═══════════════════════════════════════════════════════════════════
+      QUALITY ASSURANCE PHASE - REFINEMENT & OPTIMIZATION
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 8: EXECUTIVE READABILITY OPTIMIZATION
+      - Scan for and eliminate all jargon, replacing with plain language
+      - Ensure every acronym is defined on first use
+      - Verify sentence length averages 15-20 words
+      - Confirm paragraph length doesn't exceed 3-4 sentences
+      - Check that formatting creates clear visual hierarchy
+      
+      STEP 9: STRATEGIC COHERENCE VALIDATION
+      - Verify all recommendations align with stated user_objective
+      - Ensure themes logically connect to individual story insights
+      - Confirm no contradictions between different sections
+      - Validate that priorities are consistent throughout
+      
+      STEP 10: MARKDOWN FORMATTING & POLISH
+      Structure the final digest with:
+      - Clear heading hierarchy (# ## ###)
+      - Strategic use of **bold** for key concepts
+      - Bullet points for scannable lists
+      - Horizontal rules (---) for section separation
+      - Block quotes (>) for critical insights
+      - Tables for comparative data if applicable
+      
+      ═══════════════════════════════════════════════════════════════════
+      OUTPUT REQUIREMENTS & SUCCESS CRITERIA
+      ═══════════════════════════════════════════════════════════════════
+      
+      The digest MUST:
+      - Be consumable in 5 minutes or less
+      - Provide clear next steps for every insight
+      - Connect individual developments to broader strategy
+      - Balance detail with brevity (target: 1000-1500 words total)
+      - Use formatting that guides the eye to critical information
+      - Include timestamp and context for version control
+      - End with a clear "Bottom Line" statement
+      
+      REMEMBER: You are not just summarizing news - you are providing strategic 
+      intelligence that enables decisive action. Every word should either inform 
+      a decision or inspire an action. If it does neither, cut it.
+   
+   expected_output: >
+      A polished executive intelligence digest in Markdown format containing:
+      
+      1. **Header Section**:
+         - Digest title with date
+         - User context (role and objective)
+         - Time to read estimate
+      
+      2. **Executive Summary** (30-second brief):
+         - Most critical insight
+         - Strategic landscape overview  
+         - Key decisions required
+      
+      3. **Strategic Intelligence Items** (5-10 stories):
+         - Refined headline
+         - 3-sentence strategic summary
+         - Why this matters statement
+         - 3 actionable takeaways
+         - Priority level (High/Medium/Low)
+         - Source link
+      
+      4. **Strategic Analysis**:
+         - 3-5 cross-cutting themes
+         - Pattern analysis
+         - Emerging opportunities/threats
+      
+      5. **Recommended Actions**:
+         - 3-5 strategic recommendations
+         - Implementation priorities
+         - Resource requirements
+         - Success metrics
+      
+      6. **Bottom Line**:
+         - One paragraph synthesis
+         - Most important action to take today
+      
+      The digest should be formatted in clean, professional Markdown with 
+      clear hierarchy, strategic bolding, and scannable structure optimized 
+      for executive consumption.

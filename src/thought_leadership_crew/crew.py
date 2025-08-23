@@ -1,5 +1,5 @@
 from crewai import Agent, Crew, Process, Task, LLM
-from crewai.project import CrewBase, agent, crew, task
+from crewai.project import CrewBase, agent, crew, output_json, task
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import SerperDevTool
 from crewai_tools import FileReadTool
@@ -22,7 +22,6 @@ class ThoughtLeadershipCrew():
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
             llm=self.llm,
             verbose=True,
-            allow_delegation=True,
         )
 
     @agent
@@ -34,22 +33,48 @@ class ThoughtLeadershipCrew():
             verbose=True,
         )
 
+    @agent
+    def digest_creator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['digest_creator'],
+            llm=self.llm,
+            reasoning=True,
+            max_reasoning_attempts=3,
+            verbose=True,
+        )
+
 #Tasks
     @task
     def collect_and_enrich_news(self) -> Task:
         return Task(
             config=self.tasks_config['collect_and_enrich_news'],
+            agents=self.news_collector(),
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
-            output_json=NewsItems,
+            output_pydantic=NewsItems,
+            output_file='news_collector_output.json'
         )
 
     @task
     def analyze_and_select_stories(self) -> Task:
         return Task(
             config=self.tasks_config['analyze_and_select_stories'],
+            agents=self.strategic_analyst(),
+            context=self.collect_and_enrich_news(),
             tools=[SerperDevTool()],
-            output_json=RankedNewsAnalysis,
+            output_pydantic=RankedNewsAnalysis,
+            output_file='analyze_and_select_stories_output.json',
         )    
+
+    @task
+    def create_executive_digest(self) -> Task:
+        return Task(
+            config=self.tasks_config['create_executive_digest'],
+            agents=self.digest_creator(),
+            context=self.analyze_and_select_stories(),
+            markdown=True,
+            output_file='executive_digest.md',
+            async_execution=True,
+        )
 
     @crew
     def crew(self) -> Crew:
