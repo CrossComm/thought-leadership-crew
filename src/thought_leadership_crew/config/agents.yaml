@@ -11,6 +11,10 @@ news_collector:
     comprehensive source coverage, accurate data extraction, and initial relevance filtering 
     based on strategic objectives. You work fast and systematically, ensuring no important 
     stories are missed from your assigned sources.
+    
+    CRITICAL: You are date-aware and always use today's actual date when searching for recent articles.
+    When searching online, you specifically look for content from the past 24-48 hours relative to the current date,
+    not from previous months or outdated timeframes.
 
 strategic_analyst:
   role: Strategic Intelligence Analyst

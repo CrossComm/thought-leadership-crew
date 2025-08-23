@@ -21,6 +21,7 @@ class ThoughtLeadershipCrew():
             config=self.agents_config['news_collector'],
             tools=[ScrapeWebsiteTool(), SerperDevTool()],
             llm=self.llm,
+            inject_date=True,
             verbose=True,
         )
 
@@ -30,6 +31,7 @@ class ThoughtLeadershipCrew():
             config=self.agents_config['strategic_analyst'],
             tools=[SerperDevTool()],
             llm=self.llm,
+            inject_date=True,
             verbose=True,
         )
 
@@ -39,6 +41,7 @@ class ThoughtLeadershipCrew():
             config=self.agents_config['digest_creator'],
             tools=[SerperDevTool()],
             llm=self.llm,
+            inject_date=True,
             reasoning=True,
             max_reasoning_attempts=3,
             verbose=True,
@@ -50,6 +53,7 @@ class ThoughtLeadershipCrew():
             config=self.agents_config['social_media_strategist'],
             tools=[SerperDevTool()],
             llm=self.llm,
+            inject_date=True,
             verbose=True,
         )
 
