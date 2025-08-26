@@ -57,6 +57,16 @@ class ThoughtLeadershipCrew():
             verbose=True,
         )
 
+    @agent
+    def editorial_publisher(self) -> Agent:
+        return Agent(
+            config=self.agents_config['editorial_publisher'],
+            tools=[FileReadTool()],
+            llm=self.llm,
+            inject_date=True,
+            verbose=True,
+        )
+
 #Tasks
     @task
     def collect_and_enrich_news(self) -> Task:
@@ -88,6 +98,7 @@ class ThoughtLeadershipCrew():
             tools=[SerperDevTool()],
             markdown=True,
             output_file='executive_digest.md',
+            async_execution=True,
         )
 
     @task
@@ -100,6 +111,17 @@ class ThoughtLeadershipCrew():
             markdown=True,
             output_file='social_media_posts.md',
             async_execution=True,
+        )
+
+    @task
+    def create_final_deliverables(self) -> Task:
+        return Task(
+            config=self.tasks_config['create_final_deliverables'],
+            agent=self.editorial_publisher(),
+            context=[self.create_executive_digest(), self.create_social_media_posts()],
+            tools=[FileReadTool()],
+            markdown=True,
+            output_file='final_deliverables.md',
         )
 
     @crew

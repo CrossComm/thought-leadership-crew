@@ -472,3 +472,96 @@ create_social_media_posts:
       The output should be immediately ready to copy-paste into social platforms,
       with clear formatting, compelling narratives, and strategic elements that 
       drive engagement while positioning {user_role} as an industry thought leader.
+
+create_final_deliverables:
+  description: >
+      EDITORIAL PACKAGING & MULTI-FORMAT PUBLICATION PROTOCOL
+      
+      ═══════════════════════════════════════════════════════════════════
+      CONTENT INGESTION & ANALYSIS
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 1: CONTENT ACQUISITION
+      - Load the complete Executive Intelligence Digest from the create_executive_digest task; the file name is executive_digest.md
+      - Load the complete Social Media Content Package from the create_social_media_posts task; the file name is social_media_posts.md
+      - Validate that both content sets are complete and properly formatted
+      - Extract key themes, insights, and strategic elements from both outputs
+      
+      STEP 2: EDITORIAL ANALYSIS
+      - Review both content pieces for consistency in messaging and strategic focus
+      - Identify opportunities for cross-referencing and content integration
+      - Assess overall quality and publication readiness
+      - Check for any formatting issues or editorial inconsistencies
+      
+      ═══════════════════════════════════════════════════════════════════
+      PUBLICATION PACKAGE CREATION
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 3: EXECUTIVE DIGEST FILE CREATION
+      Create a polished markdown file containing:
+      - Clean, professional formatting with proper markdown syntax
+      - Optimized heading hierarchy and visual structure
+      - Strategic use of bold, italics, and bullet points for scannability
+      - Proper link formatting and source attribution
+      - Table of contents for easy navigation
+      - Publication metadata (date, version, target audience)
+      
+      STEP 4: SOCIAL MEDIA CONTENT FILE CREATION  
+      Create a separate markdown file containing:
+      - All social media posts in ready-to-use format
+      - Platform-specific sections (LinkedIn, Twitter/X)
+      - Copy-paste ready text blocks
+      - Hashtag suggestions and optimal posting times
+      - Engagement tracking templates
+      - Performance monitoring guidelines
+      
+      STEP 5: CROSS-CONTENT INTEGRATION
+      Ensure both files work together by:
+      - Adding cross-references between the digest and social content
+      - Aligning key messaging and strategic themes
+      - Creating complementary calls-to-action
+      - Ensuring consistent terminology and branding
+      
+      ═══════════════════════════════════════════════════════════════════
+      QUALITY ASSURANCE & OPTIMIZATION  
+      ═══════════════════════════════════════════════════════════════════
+      
+      STEP 6: EDITORIAL POLISH
+      - Proofread both files for grammar, spelling, and consistency
+      - Optimize formatting for maximum readability
+      - Ensure all links are properly formatted and accessible
+      - Validate that content maintains professional standards
+      
+      STEP 7: PUBLICATION READINESS
+      - Add proper file headers with metadata
+      - Include usage instructions and recommended distribution methods  
+      - Provide version control information
+      - Create clear file naming conventions
+      
+      DELIVERABLE REQUIREMENTS:
+      1. **Executive_Intelligence_Digest_[DATE].md** - Complete strategic digest
+      2. **Social_Media_Content_Package_[DATE].md** - All social posts ready for publication
+      
+      Both files must be immediately usable for distribution to clients, internal teams, 
+      or publication platforms without additional editing.
+      
+  expected_output: >
+      Two polished markdown files ready for immediate publication and distribution:
+      
+      **File 1: Executive_Intelligence_Digest_[DATE].md**
+      - Complete executive digest with professional formatting
+      - Table of contents and navigation elements  
+      - Strategic insights with clear visual hierarchy
+      - Source attributions and links properly formatted
+      - Publication metadata and version information
+      
+      **File 2: Social_Media_Content_Package_[DATE].md**
+      - All social media posts optimized for copy-paste deployment
+      - Platform-specific formatting (LinkedIn, Twitter/X)
+      - Hashtag recommendations and posting guidelines
+      - Performance tracking templates
+      - Engagement strategy notes
+      
+      Both files should maintain consistent branding and messaging while serving their 
+      distinct purposes - one for strategic consumption, one for social engagement. 
+      Include usage instructions and recommended deployment strategies for maximum impact.
