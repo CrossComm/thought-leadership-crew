@@ -119,7 +119,7 @@ class ThoughtLeadershipCrew():
             config=self.tasks_config['create_final_deliverables'],
             agent=self.editorial_publisher(),
             context=[self.create_executive_digest(), self.create_social_media_posts()],
-            tools=[FileReadTool()],
+            tools=[],
             markdown=True,
             output_file='final_deliverables.md',
         )
