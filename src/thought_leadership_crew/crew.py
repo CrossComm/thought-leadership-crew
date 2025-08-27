@@ -61,7 +61,7 @@ class ThoughtLeadershipCrew():
     def editorial_publisher(self) -> Agent:
         return Agent(
             config=self.agents_config['editorial_publisher'],
-            tools=[FileReadTool()],
+            tools=[],
             llm=self.llm,
             inject_date=True,
             verbose=True,
