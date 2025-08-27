@@ -3,8 +3,8 @@ from crewai.project import CrewBase, agent, crew, output_json, task
 from crewai_tools import ScrapeWebsiteTool
 from crewai_tools import SerperDevTool
 from crewai_tools import FileReadTool
-from .config.llm_config import get_llm
-from .output_classes import NewsItems, RankedNewsItem, RankedNewsAnalysis
+from thought_leadership_crew.config.llm_config import get_llm
+from thought_leadership_crew.output_classes import NewsItems, RankedNewsItem, RankedNewsAnalysis
 
 @CrewBase
 class ThoughtLeadershipCrew():
