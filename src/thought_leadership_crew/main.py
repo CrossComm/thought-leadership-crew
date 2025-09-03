@@ -8,6 +8,8 @@ from thought_leadership_crew.crew import ThoughtLeadershipCrew
 # interpolate any tasks and agents information
 
 # Example configuration - customize these based on your thought leadership domain
+
+#These are the sources that the crew will scrape from
 trusted_sources = [ 
     "https://www.artificialintelligence-news.com", 
     "https://therundown.ai", 

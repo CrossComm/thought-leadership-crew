@@ -1,13 +1,32 @@
 [project]
 name = "thought_leadership_crew"
 version = "0.1.0"
-description = "thought-leadership-crew using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+description = "AI-powered strategic intelligence system that collects, analyzes, and synthesizes news into executive digests and social media content using CrewAI multi-agent orchestration"
+authors = [{ name = "Don Shon", email = "don.shin@crosscomm.com" }]
+readme = "https://github.com/CrossComm/thought-leadership-crew/blob/main/README.md"
 requires-python = ">=3.10,<3.14"
+keywords = ["crewai", "ai-agents", "strategic-intelligence", "news-analysis", "executive-briefing", "thought-leadership", "business-intelligence"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Business",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Office/Business :: News/Diary",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 dependencies = [
     "crewai[tools]>=0.165.0,<1.0.0",
     "crewai-tools>=0.62.0",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/CrossComm/thought-leadership-crew/"
+"Bug Reports" = "https://github.com/CrossComm/thought-leadership-crew/issues"
+"Source" = "https://github.com/yourusername/thought-leadership-crew"
 
 [project.scripts]
 thought_leadership_crew = "thought_leadership_crew.main:run"
