@@ -2,7 +2,7 @@
 name = "thought_leadership_crew"
 version = "0.1.0"
 description = "AI-powered strategic intelligence system that collects, analyzes, and synthesizes news into executive digests and social media content using CrewAI multi-agent orchestration"
-authors = [{ name = "Don Shon", email = "don.shin@crosscomm.com" }]
+authors = [{ name = "Don Shin", email = "don.shin@crosscomm.com" }]
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
 keywords = ["crewai", "ai-agents", "strategic-intelligence", "news-analysis", "executive-briefing", "thought-leadership", "business-intelligence"]
