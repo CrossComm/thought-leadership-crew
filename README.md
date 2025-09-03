@@ -280,7 +280,7 @@ We welcome contributions! Please feel free to submit issues and pull requests.
 
 ## 📄 License
 
-[Specify your license here - MIT/Apache 2.0/etc.]
+MIT License - See [LICENSE](LICENSE) file for details
 
 ## 🔗 Resources & Support
 
