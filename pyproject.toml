@@ -9,7 +9,6 @@ keywords = ["crewai", "ai-agents", "strategic-intelligence", "news-analysis", "e
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Information Technology",
-    "Intended Audience :: Business",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Office/Business :: News/Diary",
     "Programming Language :: Python :: 3",
