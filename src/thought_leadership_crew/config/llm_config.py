@@ -8,23 +8,46 @@ def get_llm():
     """
     Configure and return the appropriate LLM based on environment settings.
     """
-    use_ollama = os.getenv("USE_OLLAMA_LOCALLY", "false").lower() == "true"
+    llm_provider = os.getenv("LLM_PROVIDER", "OPEN_AI").upper()
     
-    if use_ollama:
-        # Configure Ollama for local usage
-        ollama_model = os.getenv("OLLAMA_MODEL", "llama3.1:70b")
-        ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    if llm_provider == "OLLAMA":
+        model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+        base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+        
+       
+        return LLM(
+            model=f"ollama/{model}",
+            base_url=base_url,            
+            temperature=0.1
+        )
+    
+    elif llm_provider == "ANTHROPIC":
+        model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        
+        if not api_key:
+            raise ValueError("ANTHROPIC_API_KEY is required when using ANTHROPIC provider")
+        
         
         return LLM(
-            model=f"ollama/{ollama_model}",
-            base_url=ollama_base_url,            
-            temperature=0.1
-        )
-    else:
-        # Use default OpenAI/Anthropic configuration
-        # CrewAI will use OPENAI_API_KEY from environment automatically
-        model = os.getenv("MODEL", "claude-sonnet-4-20250514")
-        return LLM(
             model=model,
+            api_key=api_key,
             temperature=0.1
         )
+    
+    elif llm_provider == "OPEN_AI":
+        model = os.getenv("OPEN_AI_MODEL", "gpt-4o")
+        api_key = os.getenv("OPEN_AI_KEY")
+        
+        if not api_key:
+            raise ValueError("OPEN_AI_KEY is required when using OPEN_AI provider")
+        
+        
+        return LLM(
+            model=f"openai/{model}",
+            api_key=api_key,
+            temperature=0.1
+        )
+    
+    else:
+        raise ValueError(f"Unsupported LLM_PROVIDER: {llm_provider}. Must be one of: OPEN_AI, ANTHROPIC, OLLAMA")
