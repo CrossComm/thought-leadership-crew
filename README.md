@@ -162,19 +162,42 @@ Platform-optimized content featuring:
 
 ```mermaid
 graph TD
-    A[User Preferences] --> B[News Collector]
-    B --> C[Strategic Analyst]
-    C --> D{Parallel Execution}
-    D --> E[Digest Creator]
-    D --> F[Editorial Publisher]
-    E --> G[Final Deliverables]
-    F --> G
+    %% Input
+    A[User Input<br/>• User Role<br/>• User Goal<br/>• Trusted Sources] -->|Configures| B[News Collector Agent]
     
-    B -.-> H[news_collector_output.json]
-    C -.-> I[analyze_and_select_stories_output.json]
-    E -.-> J[executive_digest.md]
-    F -.-> K[social_media_posts.md]
-    G -.-> L[final_deliverables.md]
+    %% News Collection Flow
+    B -->|Outputs| NC_OUT[news_collector_output.json<br/>• Article URLs<br/>• Titles & Summaries<br/>• Source metadata]
+    NC_OUT -->|Feeds into| C[Strategic Analyst Agent]
+    
+    %% Analysis Flow
+    C -->|Outputs| SA_OUT[analyze_and_select_stories_output.json<br/>• Top 5-10 stories<br/>• Relevance scores<br/>• Strategic rankings]
+    
+    %% Parallel Processing
+    SA_OUT -->|Input for| D{Parallel Execution}
+    D -->|Analyzed stories| E[Digest Creator Agent]
+    D -->|Analyzed stories| F[Editorial Publisher Agent]
+    
+    %% Digest Creation
+    E -->|Generates| DG_OUT[executive_digest.md<br/>• Executive summaries<br/>• Strategic implications<br/>• Action items]
+    
+    %% Social Media Creation
+    F -->|Generates| SM_OUT[social_media_posts.md<br/>• LinkedIn posts<br/>• Twitter threads<br/>• Hashtag strategies]
+    
+    %% Final Assembly
+    DG_OUT -->|Combined into| G[Final Assembly Task]
+    SM_OUT -->|Combined into| G
+    G -->|Outputs| FINAL[final_deliverables.md<br/>Complete intelligence package]
+    
+    %% Styling
+    classDef input fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
+    classDef agent fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    classDef output fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef final fill:#fce4ec,stroke:#e91e63,stroke-width:2px
+    
+    class A input
+    class B,C,E,F agent
+    class NC_OUT,SA_OUT,DG_OUT,SM_OUT output
+    class FINAL final
 ```
 
 ### Task Configuration
@@ -281,14 +304,3 @@ We welcome contributions! Please feel free to submit issues and pull requests.
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE) file for details
-
-## 🔗 Resources & Support
-
-- **Documentation**: [CrewAI Docs](https://docs.crewai.com)
-- **GitHub**: [CrewAI Repository](https://github.com/joaomdmoura/crewai)
-- **Discord Community**: [Join Discord](https://discord.com/invite/X4JWnZnxPb)
-- **LLM Configuration Guide**: [CrewAI LLM Docs](https://docs.crewai.com/en/concepts/llms)
-
----
-
-Built with ❤️ using [CrewAI](https://crewai.com) - Empowering strategic leaders with AI-driven intelligence.
