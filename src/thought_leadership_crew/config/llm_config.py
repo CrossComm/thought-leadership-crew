@@ -8,26 +8,25 @@ def get_llm():
     """
     Configure and return the appropriate LLM based on environment settings.
     """
-    llm_provider = os.getenv("LLM_PROVIDER", "OPEN_AI").upper()
+    use_ollama = os.getenv("USE_OLLAMA", "false").lower() == "true"
     
-    if llm_provider == "OLLAMA":
+    if use_ollama:
         model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
         base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         
-       
         return LLM(
             model=f"ollama/{model}",
-            base_url=base_url,            
+            base_url=base_url,
             temperature=0.1
         )
     
-    elif llm_provider == "ANTHROPIC":
-        model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+    model = os.getenv("MODEL", "gpt-4o")
+    
+    if model.startswith("claude"):
         api_key = os.getenv("ANTHROPIC_API_KEY")
         
         if not api_key:
-            raise ValueError("ANTHROPIC_API_KEY is required when using ANTHROPIC provider")
-        
+            raise ValueError("ANTHROPIC_API_KEY is required when using Claude models")
         
         return LLM(
             model=f"anthropic/{model}",
@@ -35,13 +34,11 @@ def get_llm():
             temperature=0.1
         )
     
-    elif llm_provider == "OPEN_AI":
-        model = os.getenv("OPEN_AI_MODEL", "gpt-4o")
-        api_key = os.getenv("OPEN_AI_KEY")
+    elif model.startswith("gpt") or model.startswith("o1"):
+        api_key = os.getenv("OPENAI_API_KEY")
         
         if not api_key:
-            raise ValueError("OPEN_AI_KEY is required when using OPEN_AI provider")
-        
+            raise ValueError("OPENAI_API_KEY is required when using OpenAI models")
         
         return LLM(
             model=f"openai/{model}",
@@ -50,4 +47,4 @@ def get_llm():
         )
     
     else:
-        raise ValueError(f"Unsupported LLM_PROVIDER: {llm_provider}. Must be one of: OPEN_AI, ANTHROPIC, OLLAMA")
+        raise ValueError(f"Unsupported model: {model}. Model must start with 'claude' for Anthropic or 'gpt'/'o1' for OpenAI")
