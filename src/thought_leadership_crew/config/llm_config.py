@@ -30,7 +30,7 @@ def get_llm():
         
         
         return LLM(
-            model=model,
+            model=f"anthropic/{model}",
             api_key=api_key,
             temperature=0.1
         )
