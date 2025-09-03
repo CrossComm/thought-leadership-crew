@@ -18,8 +18,8 @@ trusted_sources = [
     "https://www.anthropic.com/news" ]
 
 # These parameters define your specific thought leadership focus
-user_role = "Busy CEO who provides AI strategy and transformation consulting to mid-level organizations looking to catch up or accelerate AI Adoption."
-user_objective = "Find the most strategically important news in the AI space that would be considered must-know information for mid-level organization leaders."
+user_role = "Busy CEO who wants to learn about the latest news in the AI space."
+user_objective = "Find the most strategically important news in the AI space that would be considered must-know information for CEO's."
 
 
 def run():

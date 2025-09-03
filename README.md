@@ -111,19 +111,136 @@ Platform-optimized content featuring:
 - Twitter/X threads on key developments
 - Hashtag strategies for maximum reach
 
-## 🛠️ Technical Architecture
+## 🤖 Crew Architecture & Workflow
 
-### Agent Ensemble
-- **News Collector**: Harvests articles from trusted sources with date-aware filtering
-- **Strategic Analyst**: Applies multi-criteria decision analysis for relevance ranking
-- **Digest Creator**: Synthesizes intelligence into executive-ready formats with fact verification
-- **Editorial Publisher**: Generates platform-specific social media content
+### The Agents
+
+#### 1. News Collector Agent
+- **Role**: Strategic News Intelligence Specialist
+- **Mission**: Harvest and extract recent articles from trusted sources
+- **Capabilities**:
+  - Web search using Serper API
+  - Date-aware filtering (focuses on last 24-48 hours)
+  - Source reliability assessment
+  - Initial relevance filtering
+- **Output**: JSON collection of articles with metadata
+
+#### 2. Strategic Analyst Agent  
+- **Role**: Strategic Intelligence Analyst
+- **Mission**: Analyze and rank collected news based on strategic relevance
+- **Capabilities**:
+  - Multi-criteria decision analysis (MCDA)
+  - Business impact assessment
+  - Technology adoption evaluation
+  - Competitive intelligence analysis
+  - Risk-opportunity scoring
+- **Output**: Prioritized list of top 5-10 strategic developments
+
+#### 3. Digest Creator Agent
+- **Role**: Executive Intelligence Digest Architect
+- **Mission**: Transform analysis into executive-ready intelligence briefing
+- **Capabilities**:
+  - Fact verification through web search
+  - Executive summary writing
+  - "Why it matters" contextualization
+  - Strategic implications analysis
+  - Action item identification
+- **Output**: Executive digest markdown file
+
+#### 4. Editorial Publisher Agent
+- **Role**: Strategic Communications Specialist
+- **Mission**: Create platform-optimized social media content
+- **Capabilities**:
+  - LinkedIn post generation
+  - Twitter/X thread creation
+  - Hashtag strategy
+  - Engagement optimization
+  - Professional tone calibration
+- **Output**: Social media posts markdown file
+
+### The Workflow
+
+```mermaid
+graph TD
+    A[User Preferences] --> B[News Collector]
+    B --> C[Strategic Analyst]
+    C --> D{Parallel Execution}
+    D --> E[Digest Creator]
+    D --> F[Editorial Publisher]
+    E --> G[Final Deliverables]
+    F --> G
+    
+    B -.-> H[news_collector_output.json]
+    C -.-> I[analyze_and_select_stories_output.json]
+    E -.-> J[executive_digest.md]
+    F -.-> K[social_media_posts.md]
+    G -.-> L[final_deliverables.md]
+```
+
+### Task Configuration
+
+The crew executes tasks in a hybrid sequential-parallel pattern:
+
+1. **News Collection Task** (`collect_and_enrich_news`)
+   - Searches trusted sources for recent articles
+   - Extracts titles, summaries, URLs, and metadata
+   - Filters based on initial relevance criteria
+   - Output: `news_collector_output.json`
+
+2. **Analysis Task** (`analyze_and_select_stories`)  
+   - Applies strategic frameworks to collected news
+   - Scores each article on multiple dimensions
+   - Ranks by strategic importance
+   - Output: `analyze_and_select_stories_output.json`
+
+3. **Parallel Processing** (async_execution=True):
+   
+   **3a. Digest Creation Task** (`create_executive_digest`)
+   - Synthesizes top stories into briefing format
+   - Verifies key facts and statistics
+   - Adds strategic context and implications
+   - Output: `executive_digest.md`
+   
+   **3b. Social Publishing Task** (`create_social_media_posts`)
+   - Transforms analysis into social content
+   - Optimizes for platform-specific formats
+   - Maintains professional thought leadership tone
+   - Output: `social_media_posts.md`
+
+4. **Final Assembly Task** (`compile_final_deliverables`)
+   - Waits for both async tasks to complete
+   - Combines executive digest and social media posts
+   - Creates unified deliverable document
+   - Output: `final_deliverables.md`
+
+### Execution Flow Benefits
+
+The parallel execution of digest creation and social media post generation:
+- **Enables specialized optimization** for each output format
+- **Maintains consistency** through shared analysis data
+- **Allows independent fact-checking** and verification
+
+### Customization Points
+
+You can customize the crew's behavior by modifying:
+
+- **Agent Personalities** (`config/agents.yaml`): Adjust roles, goals, and backstories
+- **Task Definitions** (`config/tasks.yaml`): Modify task descriptions and expected outputs
+- **User Preferences** (`knowledge/user_preference.txt`): Define your specific context:
+  ```
+  Role: [Your role, e.g., "CTO of a FinTech startup"]
+  Objective: [Your goal, e.g., "Stay ahead of AI and blockchain developments"]
+  Trusted Sources: [Your preferred news sources]
+  ```
+
+## 🛠️ Technical Architecture
 
 ### Technology Stack
 - **Framework**: CrewAI 0.165.0+
 - **Language**: Python 3.10-3.14
 - **Package Management**: UV
 - **LLM Integration**: Supports all major providers via CrewAI
+- **Async Execution**: Parallel task processing for performance
 
 ## 📁 Project Structure
 

@@ -1,8 +1,18 @@
+# Environment
 .env
+
+# Python
 __pycache__/
+
+# OS
 .DS_Store
+
+# Crew Output Files
 news_collector_output.json
 analyze_and_select_stories_output.json
 executive_digest.md
 social_media_posts.md
 final_deliverables.md
+
+# UV Package Manager
+uv.lock

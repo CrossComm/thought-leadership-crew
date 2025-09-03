@@ -1,3 +1,40 @@
+"""
+LLM Configuration Module for Thought Leadership Crew
+
+This module handles dynamic LLM provider configuration based on environment variables.
+Supports multiple providers through CrewAI's LLM interface.
+
+Configuration:
+    - LLM_PROVIDER: The provider to use (openai, anthropic, ollama, etc.)
+    - MODEL: The specific model to use
+    - Provider-specific API keys as documented at https://docs.crewai.com/en/concepts/llms
+
+The module combines LLM_PROVIDER and MODEL to create the full model string
+in the format "provider/model" as required by CrewAI.
+
+Example:
+    LLM_PROVIDER=openai
+    MODEL=gpt-4o
+    Results in: "openai/gpt-4o"
+
+For local models with Ollama:
+    LLM_PROVIDER=ollama
+    MODEL=llama3.1:8b
+    Results in: "ollama/llama3.1:8b"
+
+Supported Providers:
+    - OpenAI: Requires OPENAI_API_KEY
+    - Anthropic: Requires ANTHROPIC_API_KEY
+    - Google Gemini: Requires GEMINI_API_KEY
+    - Ollama: No API key required (runs locally)
+    - Azure: Requires AZURE_API_KEY, AZURE_API_BASE, AZURE_API_VERSION
+    - Mistral: Requires MISTRAL_API_KEY
+    - Groq: Requires GROQ_API_KEY
+    - Cohere: Requires COHERE_API_KEY
+
+See full documentation: https://docs.crewai.com/en/concepts/llms
+"""
+
 import os
 from crewai import LLM
 from dotenv import load_dotenv
